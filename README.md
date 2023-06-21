@@ -13,3 +13,20 @@ source venv/bin/activate
 pip3 install -r requirements.txt 
 python3 main.py
 ```
+
+### Ejemplos Insumos
+Los ejemplos de los archivos con la información a procesar estan ubicados dentro del directorio Insumos, el formato de estos archivos es .xlsx
+
+- Contactos_Clientes.xlsx
+- Contactos_Proveedores.xlsx  
+- Reporte_Impuestos_5-IVA.xlsx
+- Reporte_Impuestos_19-IVA.xlsx
+- Reporte_Impuestos_Exentos.xlsx
+
+### Ejemplos Reportes
+Los ejemplos de los archivos con la información a procesada y resultante del cruce de información estan ubicados dentro del directorio reportes, el formato de salida de estos archivos es .xlsx
+
+- Compras.xlsx
+- Devolucion_Copmras.xlsx
+- Devolcuion_Ventas.xlsx
+- Ventas.xlsx
