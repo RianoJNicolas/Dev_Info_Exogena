@@ -176,6 +176,6 @@ def fit_dates(df_contactos,df,tipo_documento):
 
 
 def get_forms(df_0,df_5,df_19,df_contactos,tipo_documento):
-  df1 = get_dfs(df_0,df_5,df_19,tipo_documento)
-  df_f = fit_dates(df_contactos,df1[1],tipo_documento)
-  return df_f
+    df1 = get_dfs(df_0,df_5,df_19,tipo_documento)
+    df_f = fit_dates(df_contactos,df1[1],tipo_documento)
+    return df_f
