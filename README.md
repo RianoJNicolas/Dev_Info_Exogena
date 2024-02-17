@@ -8,7 +8,7 @@ Para ejecutar el aplicativo es necesario seguir los siguientes pasos en la conso
 ```sh
 git clone
 cd app
-python3 -m venv env
+python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt 
 python3 main.py
