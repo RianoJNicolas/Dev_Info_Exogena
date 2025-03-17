@@ -1,12 +1,13 @@
 import pandas as pd
 
+
 def get_dfs(df_0,df_5,df_19,key_field):
     """
         inputs:
         df_0  -> Dataframe correspondiente a datos con IVA cero/excentos
         df_5  -> Dataframe correspondiente a datos con IVA 5%
         df_19 -> Dataframe correspondiente a datos con IVA 19%
-        key_field -> String que puede tomar cuatro valores (Factura, Factura de compra,Nota débito,Nota crédito)
+        key_field -> String que puede tomar cinco valores (Factura, Factura de compra, Nota débito, Nota crédito, Nota débito en ingresos)
         outputs:
         df_result -> Dataframe con datos con IVA 0, 5 y 19
     """
@@ -17,7 +18,7 @@ def get_dfs(df_0,df_5,df_19,key_field):
     df_19 = df_19.loc[df_19['Tipo de documento'] == key_field]
 
     # Actualizacion de nombres de las columnas y eliminando columnas
-    if (key_field == "Factura"):
+    if (key_field == "Factura de venta"):
         # Actualizacion de nombres
         df_0 = df_0.rename(columns={"Base ventas": "Excento"})
 
@@ -38,6 +39,27 @@ def get_dfs(df_0,df_5,df_19,key_field):
                         'Impuesto devolución ventas','Base devolución compras',
                         'Impuesto devolución compras'], axis=1)
         
+    elif (key_field == "Nota débito en ingresos"):
+        # Actualizacion de nombres
+        df_0 = df_0.rename(columns={"Base ventas": "Excento"})
+
+        df_5 = df_5.rename(columns={"Base ventas": "Base IVA-5%"})
+        df_5 = df_5.rename(columns={"Impuesto en ventas": "IVA-5%"})
+
+        df_19 = df_19.rename(columns={"Base ventas": "Base IVA-19%"})
+        df_19 = df_19.rename(columns={"Impuesto en ventas": "IVA-19%"})
+
+        # Eliminando columnas no necesarias
+        df_0 = df_0.drop(['Base compras','Impuesto en compras','Base devolución ventas',
+                        'Impuesto devolución ventas','Base devolución compras',
+                        'Impuesto devolución compras'], axis=1)
+        df_5 = df_5.drop(['Base compras','Impuesto en compras','Base devolución ventas',
+                        'Impuesto devolución ventas','Base devolución compras',
+                        'Impuesto devolución compras'], axis=1)
+        df_19 = df_19.drop(['Base compras','Impuesto en compras','Base devolución ventas',
+                        'Impuesto devolución ventas','Base devolución compras',
+                        'Impuesto devolución compras'], axis=1)
+
     elif (key_field == "Factura de compra"):
         # Actualizacion de nombres
         df_0 = df_0.rename(columns={"Base compras": "Excento"})
@@ -126,11 +148,11 @@ def fit_dates(df_contactos,df,tipo_documento):
         df_contactos -> Dataframe con los datos de clientes o proveedores
         df -> Dataframe con los datos de ventas, compras o devoluciones
         tipo_documento (string) -> Especifica el tipo de documento a obtener
-    Outputs_
+    Outputs:
         df_result -> Dataframe con los datos + contactos
     """
     df_result = df
-    if (tipo_documento == "Factura") or (tipo_documento == "Nota crédito"):
+    if (tipo_documento == "Factura de venta") or (tipo_documento == "Nota crédito") or (tipo_documento == "Nota débito en ingresos"):
         # Preparacion de df y df_contactos para clientes
         df_contactos['Nombre'] = df_contactos['Nombre'].fillna(value='').str.strip()
         df_contactos['Segundo nombre'] = df_contactos['Segundo nombre'].fillna(value='').str.strip()

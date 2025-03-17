@@ -25,7 +25,9 @@ def run():
     # Obtener ventas, compras, devoluciones compras y devoluciones ventas
     # Ventas
     logging.info("Iniciando procesamiento y cruce de datos")
-    df_ventas = utils.get_forms(df_iva_0, df_iva_5, df_iva_19, df_clientes, "Factura")
+    df_ventas = utils.get_forms(df_iva_0, df_iva_5, df_iva_19, df_clientes, "Factura de venta")
+    # Notas debito de ingresos
+    df_ventas_nd = utils.get_forms(df_iva_0, df_iva_5, df_iva_19, df_clientes, "Nota débito en ingresos")
     # Compras
     df_compras = utils.get_forms(df_iva_0, df_iva_5, df_iva_19, df_proveedores, "Factura de compra")
     # Notas debito / Devolucion en compras
@@ -39,6 +41,7 @@ def run():
     df_compras.to_excel('Reportes/Compras.xlsx', index=False)
     df_ND.to_excel('Reportes/Devolucion_Compras.xlsx', index=False)
     df_ventas.to_excel('Reportes/Ventas.xlsx', index=False)
+    df_ventas_nd.to_excel('Reportes/Ventas_Notas_Debito.xlsx', index=False)
     df_NC.to_excel('Reportes/Devolucion_Ventas.xlsx', index=False)
     logging.info("Finalizacion de escritura de Reportes correctamente")
 
