@@ -7,12 +7,12 @@ def get_dfs(df_0,df_5,df_19,key_field):
         df_0  -> Dataframe correspondiente a datos con IVA cero/excentos
         df_5  -> Dataframe correspondiente a datos con IVA 5%
         df_19 -> Dataframe correspondiente a datos con IVA 19%
-        key_field -> String que puede tomar cinco valores (Factura, Factura de compra, Nota débito, Nota crédito, Nota débito en ingresos)
+        key_field -> String que puede tomar cinco valores (Factura de venta, Factura de compra, Nota débito, Nota crédito, Nota débito en ingresos)
         outputs:
         df_result -> Dataframe con datos con IVA 0, 5 y 19
     """
     
-    # Obtencion de datframes de ventas, compras, notas credito o notas debito
+    # Obtencion de datframes de ventas, notas debito de ingresos, compras, notas credito o notas debito
     df_0 = df_0.loc[df_0['Tipo de documento'] == key_field]
     df_5 = df_5.loc[df_5['Tipo de documento'] == key_field]
     df_19 = df_19.loc[df_19['Tipo de documento'] == key_field]
