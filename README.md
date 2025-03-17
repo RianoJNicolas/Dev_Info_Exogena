@@ -28,6 +28,6 @@ Los ejemplos de los archivos con la información a procesada y resultante del cr
 
 - Compras.xlsx
 - Devolucion_Copmras.xlsx
-- Devolcuion_Ventas.xlsx
+- Devolucion_Ventas.xlsx
 - Ventas.xlsx
 - Ventas_Notas_Debitos.xlsx
